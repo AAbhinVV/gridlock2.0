@@ -1,0 +1,559 @@
+{
+  "dataset_rows": 8173,
+  "cv_folds": 5,
+  "baseline_v1": {
+    "duration": {
+      "median_ae_minutes": 35.0,
+      "r2_log": 0.2
+    },
+    "closure": {
+      "roc_auc": 0.794
+    },
+    "major": {
+      "roc_auc": 0.883
+    }
+  },
+  "duration": {
+    "n": 2901,
+    "n_splits": 5,
+    "best_params": {
+      "reg__min_samples_leaf": 40,
+      "reg__max_leaf_nodes": 15,
+      "reg__max_iter": 200,
+      "reg__learning_rate": 0.05,
+      "reg__l2_regularization": 1.0
+    },
+    "median_ae_minutes": 31.860133236178505,
+    "rmsle": 1.3009019038326106,
+    "within_2x": 0.48811086711377527,
+    "cv_random": {
+      "mae_minutes": {
+        "mean": 197.6777588737229,
+        "std": 10.206741242193809,
+        "folds": [
+          189.0401,
+          197.1504,
+          207.9354,
+          184.0895,
+          210.1734
+        ]
+      },
+      "median_ae_minutes": {
+        "mean": 31.860133236178505,
+        "std": 1.2310084741496818,
+        "folds": [
+          34.0172,
+          30.8981,
+          32.3095,
+          30.5666,
+          31.5092
+        ]
+      },
+      "rmsle": {
+        "mean": 1.3009019038326106,
+        "std": 0.035495444274328054,
+        "folds": [
+          1.3024,
+          1.2874,
+          1.3591,
+          1.249,
+          1.3065
+        ]
+      },
+      "within_2x": {
+        "mean": 0.48811086711377527,
+        "std": 0.011539092590706429,
+        "folds": [
+          0.4785,
+          0.4931,
+          0.4793,
+          0.5086,
+          0.481
+        ]
+      }
+    },
+    "cv_temporal": {
+      "mae_minutes": {
+        "mean": 252.94567593354824,
+        "std": 0.0,
+        "folds": [
+          252.9457
+        ]
+      },
+      "median_ae_minutes": {
+        "mean": 42.42767479164564,
+        "std": 0.0,
+        "folds": [
+          42.4277
+        ]
+      },
+      "rmsle": {
+        "mean": 1.413967612523076,
+        "std": 0.0,
+        "folds": [
+          1.414
+        ]
+      },
+      "within_2x": {
+        "mean": 0.4199655765920826,
+        "std": 0.0,
+        "folds": [
+          0.42
+        ]
+      }
+    },
+    "cv_group": {
+      "mae_minutes": {
+        "mean": 214.88017423445325,
+        "std": 47.41604715184365,
+        "folds": [
+          217.8775,
+          217.7243,
+          299.384,
+          170.7812,
+          168.6338
+        ]
+      },
+      "median_ae_minutes": {
+        "mean": 36.31805141194767,
+        "std": 6.117851630417178,
+        "folds": [
+          32.2251,
+          34.2088,
+          48.4888,
+          33.3329,
+          33.3347
+        ]
+      },
+      "rmsle": {
+        "mean": 1.347126058202759,
+        "std": 0.05959070677906688,
+        "folds": [
+          1.4086,
+          1.2578,
+          1.4137,
+          1.3074,
+          1.3481
+        ]
+      },
+      "within_2x": {
+        "mean": 0.4474596023756943,
+        "std": 0.033204789591171124,
+        "folds": [
+          0.456,
+          0.4613,
+          0.3821,
+          0.4639,
+          0.474
+        ]
+      }
+    },
+    "feature_importance": [
+      {
+        "feature": "description_text",
+        "importance": 0.20034
+      },
+      {
+        "feature": "long_lived_cause",
+        "importance": 0.1166
+      },
+      {
+        "feature": "event_cause",
+        "importance": 0.08185
+      },
+      {
+        "feature": "veh_type",
+        "importance": 0.02756
+      },
+      {
+        "feature": "police_station",
+        "importance": 0.02111
+      },
+      {
+        "feature": "latitude",
+        "importance": 0.01819
+      },
+      {
+        "feature": "hour_sin",
+        "importance": 0.01632
+      },
+      {
+        "feature": "longitude",
+        "importance": 0.0138
+      },
+      {
+        "feature": "days_to_holiday",
+        "importance": 0.01108
+      },
+      {
+        "feature": "junction",
+        "importance": 0.0107
+      },
+      {
+        "feature": "cluster_density",
+        "importance": 0.01017
+      },
+      {
+        "feature": "month",
+        "importance": 0.00969
+      },
+      {
+        "feature": "hour_cos",
+        "importance": 0.00958
+      },
+      {
+        "feature": "cluster_id",
+        "importance": 0.00889
+      },
+      {
+        "feature": "hour",
+        "importance": 0.00872
+      }
+    ]
+  },
+  "closure": {
+    "n": 8173,
+    "n_splits": 5,
+    "best_params": {
+      "clf__min_samples_leaf": 40,
+      "clf__max_leaf_nodes": 15,
+      "clf__max_iter": 200,
+      "clf__learning_rate": 0.05,
+      "clf__l2_regularization": 1.0
+    },
+    "positive_rate": 0.08271136669521595,
+    "roc_auc": 0.8238282400031393,
+    "pr_auc": 0.4844605990529211,
+    "threshold": 0.475,
+    "cv_random": {
+      "roc_auc": {
+        "mean": 0.8238282400031393,
+        "std": 0.017943085448451603,
+        "folds": [
+          0.8258,
+          0.811,
+          0.7969,
+          0.8418,
+          0.8437
+        ]
+      },
+      "pr_auc": {
+        "mean": 0.4844605990529211,
+        "std": 0.022316367411090693,
+        "folds": [
+          0.5131,
+          0.4681,
+          0.4507,
+          0.4908,
+          0.4996
+        ]
+      },
+      "accuracy": {
+        "mean": 0.912761464146819,
+        "std": 0.004684961424131927,
+        "folds": [
+          0.9211,
+          0.9101,
+          0.9076,
+          0.9143,
+          0.9106
+        ]
+      }
+    },
+    "cv_temporal": {
+      "roc_auc": {
+        "mean": 0.8439903547095802,
+        "std": 0.0,
+        "folds": [
+          0.844
+        ]
+      },
+      "pr_auc": {
+        "mean": 0.3987417933774695,
+        "std": 0.0,
+        "folds": [
+          0.3987
+        ]
+      },
+      "accuracy": {
+        "mean": 0.8733944954128441,
+        "std": 0.0,
+        "folds": [
+          0.8734
+        ]
+      }
+    },
+    "cv_group": {
+      "roc_auc": {
+        "mean": 0.7797207706724725,
+        "std": 0.04928071792412008,
+        "folds": [
+          0.7395,
+          0.7362,
+          0.8521,
+          0.7446,
+          0.8262
+        ]
+      },
+      "pr_auc": {
+        "mean": 0.40770384208990623,
+        "std": 0.09365287810222794,
+        "folds": [
+          0.3226,
+          0.393,
+          0.5709,
+          0.3137,
+          0.4382
+        ]
+      },
+      "accuracy": {
+        "mean": 0.9121804906014752,
+        "std": 0.01531956900488753,
+        "folds": [
+          0.9009,
+          0.8892,
+          0.9252,
+          0.9305,
+          0.9151
+        ]
+      }
+    },
+    "feature_importance": [
+      {
+        "feature": "description_text",
+        "importance": 0.17343
+      },
+      {
+        "feature": "latitude",
+        "importance": 0.01157
+      },
+      {
+        "feature": "longitude",
+        "importance": 0.00879
+      },
+      {
+        "feature": "event_cause",
+        "importance": 0.00464
+      },
+      {
+        "feature": "days_to_holiday",
+        "importance": 0.00461
+      },
+      {
+        "feature": "corridor_density",
+        "importance": 0.00339
+      },
+      {
+        "feature": "police_station",
+        "importance": 0.00322
+      },
+      {
+        "feature": "cluster_id",
+        "importance": 0.00314
+      },
+      {
+        "feature": "cluster_density",
+        "importance": 0.00248
+      },
+      {
+        "feature": "veh_type",
+        "importance": 0.00216
+      },
+      {
+        "feature": "hour",
+        "importance": 0.00208
+      },
+      {
+        "feature": "junction_density",
+        "importance": 0.00188
+      },
+      {
+        "feature": "corridor",
+        "importance": 0.0018
+      },
+      {
+        "feature": "hour_sin",
+        "importance": 0.00162
+      },
+      {
+        "feature": "dow",
+        "importance": 0.00155
+      }
+    ]
+  },
+  "major": {
+    "n": 2901,
+    "n_splits": 5,
+    "best_params": {
+      "clf__min_samples_leaf": 20,
+      "clf__max_leaf_nodes": 63,
+      "clf__max_iter": 200,
+      "clf__learning_rate": 0.05,
+      "clf__l2_regularization": 0.0
+    },
+    "positive_rate": 0.22888659083074803,
+    "roc_auc": 0.8999984452573297,
+    "pr_auc": 0.7703938908617127,
+    "threshold": 0.325,
+    "cv_random": {
+      "roc_auc": {
+        "mean": 0.8999984452573297,
+        "std": 0.014090709332785166,
+        "folds": [
+          0.9049,
+          0.9028,
+          0.9134,
+          0.9061,
+          0.8727
+        ]
+      },
+      "pr_auc": {
+        "mean": 0.7703938908617127,
+        "std": 0.030722519503895804,
+        "folds": [
+          0.7929,
+          0.7862,
+          0.7947,
+          0.7657,
+          0.7125
+        ]
+      },
+      "accuracy": {
+        "mean": 0.8624636476942251,
+        "std": 0.015567013366740864,
+        "folds": [
+          0.8554,
+          0.8759,
+          0.8655,
+          0.8793,
+          0.8362
+        ]
+      }
+    },
+    "cv_temporal": {
+      "roc_auc": {
+        "mean": 0.8709179656746968,
+        "std": 0.0,
+        "folds": [
+          0.8709
+        ]
+      },
+      "pr_auc": {
+        "mean": 0.6956417459492527,
+        "std": 0.0,
+        "folds": [
+          0.6956
+        ]
+      },
+      "accuracy": {
+        "mean": 0.7917383820998278,
+        "std": 0.0,
+        "folds": [
+          0.7917
+        ]
+      }
+    },
+    "cv_group": {
+      "roc_auc": {
+        "mean": 0.865617874950295,
+        "std": 0.022600616572593338,
+        "folds": [
+          0.8892,
+          0.8809,
+          0.8779,
+          0.8277,
+          0.8524
+        ]
+      },
+      "pr_auc": {
+        "mean": 0.6595927889623296,
+        "std": 0.05687977359401287,
+        "folds": [
+          0.7101,
+          0.6815,
+          0.7105,
+          0.6364,
+          0.5595
+        ]
+      },
+      "accuracy": {
+        "mean": 0.8363003376400495,
+        "std": 0.03146250412417212,
+        "folds": [
+          0.8756,
+          0.8589,
+          0.7849,
+          0.8213,
+          0.8408
+        ]
+      }
+    },
+    "feature_importance": [
+      {
+        "feature": "description_text",
+        "importance": 0.08723
+      },
+      {
+        "feature": "veh_type",
+        "importance": 0.01799
+      },
+      {
+        "feature": "longitude",
+        "importance": 0.00357
+      },
+      {
+        "feature": "corridor_density",
+        "importance": 0.00249
+      },
+      {
+        "feature": "days_to_holiday",
+        "importance": 0.00173
+      },
+      {
+        "feature": "latitude",
+        "importance": 0.00168
+      },
+      {
+        "feature": "long_lived_cause",
+        "importance": 0.00152
+      },
+      {
+        "feature": "hour_sin",
+        "importance": 0.00094
+      },
+      {
+        "feature": "event_cause",
+        "importance": 0.00081
+      },
+      {
+        "feature": "cluster_density",
+        "importance": 0.00062
+      },
+      {
+        "feature": "hour_cos",
+        "importance": 0.00056
+      },
+      {
+        "feature": "month",
+        "importance": 0.0005
+      },
+      {
+        "feature": "dow",
+        "importance": 0.00047
+      },
+      {
+        "feature": "police_station",
+        "importance": 0.00044
+      },
+      {
+        "feature": "zone",
+        "importance": 0.00042
+      }
+    ]
+  },
+  "improvement": {
+    "duration_median_ae_minutes": 3.14,
+    "closure_roc_auc_gain": 0.03,
+    "major_roc_auc_gain": 0.017
+  }
+}
