@@ -17,197 +17,197 @@
     "n": 2901,
     "n_splits": 5,
     "best_params": {
-      "reg__min_samples_leaf": 40,
-      "reg__max_leaf_nodes": 15,
-      "reg__max_iter": 200,
-      "reg__learning_rate": 0.05,
-      "reg__l2_regularization": 1.0
+      "reg__learning_rate": 0.010129561415313517,
+      "reg__max_leaf_nodes": 208,
+      "reg__max_iter": 337,
+      "reg__min_samples_leaf": 15,
+      "reg__l2_regularization": 7.530901109200336
     },
-    "median_ae_minutes": 31.860133236178505,
-    "rmsle": 1.3009019038326106,
-    "within_2x": 0.48811086711377527,
+    "median_ae_minutes": 31.443135651307507,
+    "rmsle": 1.2455580027265782,
+    "within_2x": 0.500172117039587,
     "cv_random": {
       "mae_minutes": {
-        "mean": 197.6777588737229,
-        "std": 10.206741242193809,
+        "mean": 197.12319258983413,
+        "std": 10.48801345901812,
         "folds": [
-          189.0401,
-          197.1504,
-          207.9354,
-          184.0895,
-          210.1734
+          189.29,
+          198.5074,
+          208.7641,
+          181.5325,
+          207.5221
         ]
       },
       "median_ae_minutes": {
-        "mean": 31.860133236178505,
-        "std": 1.2310084741496818,
+        "mean": 31.443135651307507,
+        "std": 1.6351507167942494,
         "folds": [
-          34.0172,
-          30.8981,
-          32.3095,
-          30.5666,
-          31.5092
+          32.6916,
+          30.2993,
+          33.4403,
+          28.9253,
+          31.8592
         ]
       },
       "rmsle": {
-        "mean": 1.3009019038326106,
-        "std": 0.035495444274328054,
+        "mean": 1.2455580027265782,
+        "std": 0.04150020514338636,
         "folds": [
-          1.3024,
-          1.2874,
-          1.3591,
-          1.249,
-          1.3065
+          1.267,
+          1.2304,
+          1.2998,
+          1.1756,
+          1.2549
         ]
       },
       "within_2x": {
-        "mean": 0.48811086711377527,
-        "std": 0.011539092590706429,
+        "mean": 0.500172117039587,
+        "std": 0.004888732958867738,
         "folds": [
-          0.4785,
+          0.5009,
+          0.5069,
           0.4931,
-          0.4793,
-          0.5086,
-          0.481
+          0.5034,
+          0.4966
         ]
       }
     },
     "cv_temporal": {
       "mae_minutes": {
-        "mean": 252.94567593354824,
+        "mean": 259.11923679215323,
         "std": 0.0,
         "folds": [
-          252.9457
+          259.1192
         ]
       },
       "median_ae_minutes": {
-        "mean": 42.42767479164564,
+        "mean": 45.69946242552808,
         "std": 0.0,
         "folds": [
-          42.4277
+          45.6995
         ]
       },
       "rmsle": {
-        "mean": 1.413967612523076,
+        "mean": 1.4310839594046116,
         "std": 0.0,
         "folds": [
-          1.414
+          1.4311
         ]
       },
       "within_2x": {
-        "mean": 0.4199655765920826,
+        "mean": 0.423407917383821,
         "std": 0.0,
         "folds": [
-          0.42
+          0.4234
         ]
       }
     },
     "cv_group": {
       "mae_minutes": {
-        "mean": 214.88017423445325,
-        "std": 47.41604715184365,
+        "mean": 207.98017625899428,
+        "std": 46.85258473957994,
         "folds": [
-          217.8775,
-          217.7243,
-          299.384,
-          170.7812,
-          168.6338
+          164.7414,
+          221.6961,
+          285.8042,
+          212.9417,
+          154.7175
         ]
       },
       "median_ae_minutes": {
-        "mean": 36.31805141194767,
-        "std": 6.117851630417178,
+        "mean": 34.09803264334777,
+        "std": 8.690543515506954,
         "folds": [
-          32.2251,
-          34.2088,
-          48.4888,
-          33.3329,
-          33.3347
+          26.2053,
+          30.9298,
+          50.1223,
+          35.8708,
+          27.362
         ]
       },
       "rmsle": {
-        "mean": 1.347126058202759,
-        "std": 0.05959070677906688,
+        "mean": 1.2763316533061952,
+        "std": 0.053643444435132887,
         "folds": [
-          1.4086,
-          1.2578,
-          1.4137,
-          1.3074,
-          1.3481
+          1.2961,
+          1.2048,
+          1.3429,
+          1.3155,
+          1.2223
         ]
       },
       "within_2x": {
-        "mean": 0.4474596023756943,
-        "std": 0.033204789591171124,
+        "mean": 0.4778033989479236,
+        "std": 0.033596988688638245,
         "folds": [
-          0.456,
-          0.4613,
-          0.3821,
-          0.4639,
-          0.474
+          0.4801,
+          0.5129,
+          0.42,
+          0.4674,
+          0.5087
         ]
       }
     },
     "feature_importance": [
       {
         "feature": "description_text",
-        "importance": 0.20034
+        "importance": 0.24454
       },
       {
         "feature": "long_lived_cause",
-        "importance": 0.1166
+        "importance": 0.10419
       },
       {
         "feature": "event_cause",
-        "importance": 0.08185
-      },
-      {
-        "feature": "veh_type",
-        "importance": 0.02756
-      },
-      {
-        "feature": "police_station",
-        "importance": 0.02111
-      },
-      {
-        "feature": "latitude",
-        "importance": 0.01819
-      },
-      {
-        "feature": "hour_sin",
-        "importance": 0.01632
-      },
-      {
-        "feature": "longitude",
-        "importance": 0.0138
-      },
-      {
-        "feature": "days_to_holiday",
-        "importance": 0.01108
+        "importance": 0.10362
       },
       {
         "feature": "junction",
-        "importance": 0.0107
+        "importance": 0.09862
       },
       {
-        "feature": "cluster_density",
-        "importance": 0.01017
+        "feature": "police_station",
+        "importance": 0.06476
       },
       {
-        "feature": "month",
-        "importance": 0.00969
+        "feature": "veh_type",
+        "importance": 0.02751
       },
       {
-        "feature": "hour_cos",
-        "importance": 0.00958
+        "feature": "dist_to_center",
+        "importance": 0.02591
+      },
+      {
+        "feature": "hour_sin",
+        "importance": 0.02523
+      },
+      {
+        "feature": "latitude",
+        "importance": 0.02472
+      },
+      {
+        "feature": "longitude",
+        "importance": 0.02149
+      },
+      {
+        "feature": "days_to_holiday",
+        "importance": 0.01657
+      },
+      {
+        "feature": "desc_length",
+        "importance": 0.01433
       },
       {
         "feature": "cluster_id",
-        "importance": 0.00889
+        "importance": 0.01285
       },
       {
-        "feature": "hour",
-        "importance": 0.00872
+        "feature": "month",
+        "importance": 0.01187
+      },
+      {
+        "feature": "corridor_density",
+        "importance": 0.01097
       }
     ]
   },
@@ -215,169 +215,169 @@
     "n": 8173,
     "n_splits": 5,
     "best_params": {
-      "clf__min_samples_leaf": 40,
-      "clf__max_leaf_nodes": 15,
-      "clf__max_iter": 200,
-      "clf__learning_rate": 0.05,
-      "clf__l2_regularization": 1.0
+      "clf__learning_rate": 0.011388430207317881,
+      "clf__max_leaf_nodes": 26,
+      "clf__max_iter": 605,
+      "clf__min_samples_leaf": 21,
+      "clf__l2_regularization": 9.57804945489071
     },
     "positive_rate": 0.08271136669521595,
-    "roc_auc": 0.8238282400031393,
-    "pr_auc": 0.4844605990529211,
-    "threshold": 0.475,
+    "roc_auc": 0.8573316811255918,
+    "pr_auc": 0.4995980004459419,
+    "threshold": 0.275,
     "cv_random": {
       "roc_auc": {
-        "mean": 0.8238282400031393,
-        "std": 0.017943085448451603,
+        "mean": 0.8573316811255918,
+        "std": 0.01056791111273873,
         "folds": [
-          0.8258,
-          0.811,
-          0.7969,
-          0.8418,
-          0.8437
+          0.8662,
+          0.8493,
+          0.8407,
+          0.8624,
+          0.868
         ]
       },
       "pr_auc": {
-        "mean": 0.4844605990529211,
-        "std": 0.022316367411090693,
+        "mean": 0.4995980004459419,
+        "std": 0.033076526595294135,
         "folds": [
-          0.5131,
-          0.4681,
-          0.4507,
-          0.4908,
-          0.4996
+          0.5444,
+          0.4726,
+          0.4519,
+          0.5132,
+          0.5159
         ]
       },
       "accuracy": {
-        "mean": 0.912761464146819,
-        "std": 0.004684961424131927,
+        "mean": 0.9265877623437728,
+        "std": 0.0023780409134829318,
         "folds": [
-          0.9211,
-          0.9101,
-          0.9076,
-          0.9143,
-          0.9106
+          0.9272,
+          0.9284,
+          0.9223,
+          0.929,
+          0.9259
         ]
       }
     },
     "cv_temporal": {
       "roc_auc": {
-        "mean": 0.8439903547095802,
+        "mean": 0.8274056510571033,
         "std": 0.0,
         "folds": [
-          0.844
+          0.8274
         ]
       },
       "pr_auc": {
-        "mean": 0.3987417933774695,
+        "mean": 0.3377150626022953,
         "std": 0.0,
         "folds": [
-          0.3987
+          0.3377
         ]
       },
       "accuracy": {
-        "mean": 0.8733944954128441,
+        "mean": 0.8844036697247707,
         "std": 0.0,
         "folds": [
-          0.8734
+          0.8844
         ]
       }
     },
     "cv_group": {
       "roc_auc": {
-        "mean": 0.7797207706724725,
-        "std": 0.04928071792412008,
+        "mean": 0.8392119864599467,
+        "std": 0.027485157989019775,
         "folds": [
-          0.7395,
-          0.7362,
-          0.8521,
-          0.7446,
-          0.8262
+          0.8245,
+          0.8077,
+          0.8751,
+          0.8196,
+          0.8691
         ]
       },
       "pr_auc": {
-        "mean": 0.40770384208990623,
-        "std": 0.09365287810222794,
+        "mean": 0.4680379037946535,
+        "std": 0.06596108780400976,
         "folds": [
-          0.3226,
-          0.393,
-          0.5709,
-          0.3137,
-          0.4382
+          0.3935,
+          0.4667,
+          0.564,
+          0.3998,
+          0.5162
         ]
       },
       "accuracy": {
-        "mean": 0.9121804906014752,
-        "std": 0.01531956900488753,
+        "mean": 0.9269861285182589,
+        "std": 0.014082600463281782,
         "folds": [
-          0.9009,
-          0.8892,
-          0.9252,
-          0.9305,
-          0.9151
+          0.9136,
+          0.9112,
+          0.9479,
+          0.9379,
+          0.9243
         ]
       }
     },
     "feature_importance": [
       {
         "feature": "description_text",
-        "importance": 0.17343
+        "importance": 0.09912
       },
       {
-        "feature": "latitude",
-        "importance": 0.01157
-      },
-      {
-        "feature": "longitude",
-        "importance": 0.00879
+        "feature": "junction",
+        "importance": 0.03974
       },
       {
         "feature": "event_cause",
-        "importance": 0.00464
-      },
-      {
-        "feature": "days_to_holiday",
-        "importance": 0.00461
-      },
-      {
-        "feature": "corridor_density",
-        "importance": 0.00339
+        "importance": 0.01352
       },
       {
         "feature": "police_station",
-        "importance": 0.00322
+        "importance": 0.00703
+      },
+      {
+        "feature": "desc_length",
+        "importance": 0.00623
       },
       {
         "feature": "cluster_id",
-        "importance": 0.00314
+        "importance": 0.00542
       },
       {
-        "feature": "cluster_density",
-        "importance": 0.00248
+        "feature": "longitude",
+        "importance": 0.00511
       },
       {
-        "feature": "veh_type",
-        "importance": 0.00216
+        "feature": "dist_to_center",
+        "importance": 0.00457
+      },
+      {
+        "feature": "latitude",
+        "importance": 0.00452
+      },
+      {
+        "feature": "days_to_holiday",
+        "importance": 0.00446
+      },
+      {
+        "feature": "event_type",
+        "importance": 0.00419
+      },
+      {
+        "feature": "month",
+        "importance": 0.00356
       },
       {
         "feature": "hour",
-        "importance": 0.00208
+        "importance": 0.00325
       },
       {
         "feature": "junction_density",
-        "importance": 0.00188
+        "importance": 0.0031
       },
       {
         "feature": "corridor",
-        "importance": 0.0018
-      },
-      {
-        "feature": "hour_sin",
-        "importance": 0.00162
-      },
-      {
-        "feature": "dow",
-        "importance": 0.00155
+        "importance": 0.00297
       }
     ]
   },
@@ -385,175 +385,175 @@
     "n": 2901,
     "n_splits": 5,
     "best_params": {
-      "clf__min_samples_leaf": 20,
-      "clf__max_leaf_nodes": 63,
-      "clf__max_iter": 200,
-      "clf__learning_rate": 0.05,
-      "clf__l2_regularization": 0.0
+      "clf__learning_rate": 0.025693199021263102,
+      "clf__max_leaf_nodes": 255,
+      "clf__max_iter": 248,
+      "clf__min_samples_leaf": 15,
+      "clf__l2_regularization": 6.188016335968858
     },
     "positive_rate": 0.22888659083074803,
-    "roc_auc": 0.8999984452573297,
-    "pr_auc": 0.7703938908617127,
+    "roc_auc": 0.9109671293676426,
+    "pr_auc": 0.7803322192330339,
     "threshold": 0.325,
     "cv_random": {
       "roc_auc": {
-        "mean": 0.8999984452573297,
-        "std": 0.014090709332785166,
+        "mean": 0.9109671293676426,
+        "std": 0.018069882357927294,
         "folds": [
-          0.9049,
-          0.9028,
-          0.9134,
-          0.9061,
-          0.8727
+          0.9127,
+          0.9235,
+          0.9196,
+          0.9233,
+          0.8757
         ]
       },
       "pr_auc": {
-        "mean": 0.7703938908617127,
-        "std": 0.030722519503895804,
+        "mean": 0.7803322192330339,
+        "std": 0.050027450919855374,
         "folds": [
-          0.7929,
-          0.7862,
-          0.7947,
-          0.7657,
-          0.7125
+          0.8086,
+          0.8166,
+          0.8024,
+          0.7925,
+          0.6815
         ]
       },
       "accuracy": {
-        "mean": 0.8624636476942251,
-        "std": 0.015567013366740864,
+        "mean": 0.8669440322867826,
+        "std": 0.01980949824564271,
         "folds": [
-          0.8554,
-          0.8759,
-          0.8655,
-          0.8793,
-          0.8362
+          0.8623,
+          0.8862,
+          0.8828,
+          0.8724,
+          0.831
         ]
       }
     },
     "cv_temporal": {
       "roc_auc": {
-        "mean": 0.8709179656746968,
+        "mean": 0.8663517556290348,
         "std": 0.0,
         "folds": [
-          0.8709
+          0.8664
         ]
       },
       "pr_auc": {
-        "mean": 0.6956417459492527,
+        "mean": 0.6727674300883021,
         "std": 0.0,
         "folds": [
-          0.6956
+          0.6728
         ]
       },
       "accuracy": {
-        "mean": 0.7917383820998278,
+        "mean": 0.7969018932874354,
         "std": 0.0,
         "folds": [
-          0.7917
+          0.7969
         ]
       }
     },
     "cv_group": {
       "roc_auc": {
-        "mean": 0.865617874950295,
-        "std": 0.022600616572593338,
+        "mean": 0.8845619217519664,
+        "std": 0.016889092560820936,
         "folds": [
-          0.8892,
-          0.8809,
-          0.8779,
-          0.8277,
-          0.8524
+          0.9053,
+          0.9038,
+          0.8633,
+          0.875,
+          0.8754
         ]
       },
       "pr_auc": {
-        "mean": 0.6595927889623296,
-        "std": 0.05687977359401287,
+        "mean": 0.6802958779546376,
+        "std": 0.0479983515325267,
         "folds": [
-          0.7101,
-          0.6815,
-          0.7105,
-          0.6364,
-          0.5595
+          0.7388,
+          0.6626,
+          0.6963,
+          0.7063,
+          0.5975
         ]
       },
       "accuracy": {
-        "mean": 0.8363003376400495,
-        "std": 0.03146250412417212,
+        "mean": 0.8394133476430609,
+        "std": 0.045577208257090045,
         "folds": [
-          0.8756,
-          0.8589,
-          0.7849,
-          0.8213,
-          0.8408
+          0.8843,
+          0.8726,
+          0.7556,
+          0.8316,
+          0.8529
         ]
       }
     },
     "feature_importance": [
       {
+        "feature": "event_cause",
+        "importance": 0.0441
+      },
+      {
         "feature": "description_text",
-        "importance": 0.08723
+        "importance": 0.03747
       },
       {
         "feature": "veh_type",
-        "importance": 0.01799
-      },
-      {
-        "feature": "longitude",
-        "importance": 0.00357
-      },
-      {
-        "feature": "corridor_density",
-        "importance": 0.00249
-      },
-      {
-        "feature": "days_to_holiday",
-        "importance": 0.00173
-      },
-      {
-        "feature": "latitude",
-        "importance": 0.00168
+        "importance": 0.01454
       },
       {
         "feature": "long_lived_cause",
-        "importance": 0.00152
+        "importance": 0.01271
       },
       {
-        "feature": "hour_sin",
-        "importance": 0.00094
+        "feature": "junction",
+        "importance": 0.00955
       },
       {
-        "feature": "event_cause",
-        "importance": 0.00081
+        "feature": "corridor_density",
+        "importance": 0.00509
       },
       {
-        "feature": "cluster_density",
-        "importance": 0.00062
-      },
-      {
-        "feature": "hour_cos",
-        "importance": 0.00056
-      },
-      {
-        "feature": "month",
-        "importance": 0.0005
-      },
-      {
-        "feature": "dow",
-        "importance": 0.00047
+        "feature": "longitude",
+        "importance": 0.0047
       },
       {
         "feature": "police_station",
-        "importance": 0.00044
+        "importance": 0.00465
       },
       {
-        "feature": "zone",
-        "importance": 0.00042
+        "feature": "dist_to_center",
+        "importance": 0.00458
+      },
+      {
+        "feature": "days_to_holiday",
+        "importance": 0.00326
+      },
+      {
+        "feature": "desc_length",
+        "importance": 0.00295
+      },
+      {
+        "feature": "hour_sin",
+        "importance": 0.00286
+      },
+      {
+        "feature": "cluster_id",
+        "importance": 0.00276
+      },
+      {
+        "feature": "latitude",
+        "importance": 0.00255
+      },
+      {
+        "feature": "hour",
+        "importance": 0.00247
       }
     ]
   },
   "improvement": {
-    "duration_median_ae_minutes": 3.14,
-    "closure_roc_auc_gain": 0.03,
-    "major_roc_auc_gain": 0.017
+    "duration_median_ae_minutes": 3.56,
+    "closure_roc_auc_gain": 0.063,
+    "major_roc_auc_gain": 0.028
   }
 }

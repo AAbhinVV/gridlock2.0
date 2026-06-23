@@ -27,6 +27,8 @@ from src.data_prep import (
     load_raw,
 )
 from src.recommend import recommend
+from sklearn.ensemble import StackingRegressor, StackingClassifier
+from sklearn.linear_model import RidgeCV, LogisticRegression
 from src.train import (
     MAJOR_DURATION_MIN, 
     make_hgb_classifier, make_lgbm_classifier, make_cb_classifier,
@@ -71,42 +73,47 @@ def main():
     dtr = train_t[train_t["duration_min"].notna()]
     Xdtr, ydtr = build_feature_frame(dtr), np.log1p(dtr["duration_min"].values)
     
-    p50_hgb = make_hgb_regressor(0.5).fit(Xdtr, ydtr)
-    p50_lgbm = make_lgbm_regressor(0.5).fit(Xdtr, ydtr)
-    p50_cb = make_cb_regressor(0.5).fit(Xdtr, ydtr)
-    pred_p50 = np.mean([_dur(p50_hgb, X_test), _dur(p50_lgbm, X_test), _dur(p50_cb, X_test)], axis=0)
+    def mk_stack(quantile=0.5):
+        return StackingRegressor(
+            estimators=[
+                ("hgb", make_hgb_regressor(quantile)),
+                ("lgbm", make_lgbm_regressor(quantile)),
+                ("cb", make_cb_regressor(quantile))
+            ],
+            final_estimator=RidgeCV(),
+            n_jobs=1
+        )
+
+    p50_stack = mk_stack(0.5).fit(Xdtr, ydtr)
+    pred_p50 = _dur(p50_stack, X_test)
     
-    p90_hgb = make_hgb_regressor(0.9).fit(Xdtr, ydtr)
-    p90_lgbm = make_lgbm_regressor(0.9).fit(Xdtr, ydtr)
-    p90_cb = make_cb_regressor(0.9).fit(Xdtr, ydtr)
-    pred_p90 = np.maximum(np.mean([_dur(p90_hgb, X_test), _dur(p90_lgbm, X_test), _dur(p90_cb, X_test)], axis=0), pred_p50)
+    p90_stack = mk_stack(0.9).fit(Xdtr, ydtr)
+    pred_p90 = np.maximum(_dur(p90_stack, X_test), pred_p50)
 
     # 2. closure classifier (all rows)
     print("Training closure classifiers on train split ...")
     X_clo, y_clo = build_feature_frame(train_t), train_t["requires_road_closure"].astype(int).values
-    clo_hgb = make_hgb_classifier().fit(X_clo, y_clo)
-    clo_lgbm = make_lgbm_classifier().fit(X_clo, y_clo)
-    clo_cb = make_cb_classifier().fit(X_clo, y_clo)
     
-    closure_prob = np.mean([
-        clo_hgb.predict_proba(X_test)[:, 1],
-        clo_lgbm.predict_proba(X_test)[:, 1],
-        clo_cb.predict_proba(X_test)[:, 1]
-    ], axis=0)
+    def mk_stack_clf():
+        return StackingClassifier(
+            estimators=[
+                ("hgb", make_hgb_classifier()),
+                ("lgbm", make_lgbm_classifier()),
+                ("cb", make_cb_classifier())
+            ],
+            final_estimator=LogisticRegression(),
+            n_jobs=1
+        )
+        
+    clo_stack = mk_stack_clf().fit(X_clo, y_clo)
+    closure_prob = clo_stack.predict_proba(X_test)[:, 1]
 
     # 3. major-disruption classifier (rows with known duration)
     print("Training major-disruption classifiers on train split ...")
     maj_y = ((dtr["duration_min"] >= MAJOR_DURATION_MIN)
              | (dtr["requires_road_closure"] == 1)).astype(int).values
-    maj_hgb = make_hgb_classifier().fit(Xdtr, maj_y)
-    maj_lgbm = make_lgbm_classifier().fit(Xdtr, maj_y)
-    maj_cb = make_cb_classifier().fit(Xdtr, maj_y)
-    
-    major_prob = np.mean([
-        maj_hgb.predict_proba(X_test)[:, 1],
-        maj_lgbm.predict_proba(X_test)[:, 1],
-        maj_cb.predict_proba(X_test)[:, 1]
-    ], axis=0)
+    maj_stack = mk_stack_clf().fit(Xdtr, maj_y)
+    major_prob = maj_stack.predict_proba(X_test)[:, 1]
 
     # tuned closure threshold from the trained reference tables, if available
     closure_thr = 0.5

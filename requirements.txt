@@ -6,3 +6,4 @@ plotly>=5.18
 streamlit>=1.30
 lightgbm>=4.0
 catboost>=1.2
+optuna>=3.0

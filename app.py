@@ -22,6 +22,7 @@ import streamlit as st
 
 from src.data_prep import EventInput, engineer_features, load_raw
 from src.inference import Forecaster
+from src.train import FrozenPreprocessor  # Required to unpickle models correctly in Streamlit
 
 st.set_page_config(
     page_title="Event-Driven Congestion Command Center",
@@ -71,10 +72,18 @@ def get_metrics() -> dict:
 
 
 def models_ready() -> bool:
+    # Check for the stacking ensemble models (current train.py output)
+    # or fall back to legacy single-model names.
+    required_base = ["reference_tables", "feature_builder"]
+    model_names = ["duration_model", "duration_model_p90", "closure_model", "major_model"]
+    for m in model_names:
+        stack = os.path.join(MODELS_DIR, f"{m}_stack.joblib")
+        legacy = os.path.join(MODELS_DIR, f"{m}.joblib")
+        if not (os.path.exists(stack) or os.path.exists(legacy)):
+            return False
     return all(
         os.path.exists(os.path.join(MODELS_DIR, f"{m}.joblib"))
-        for m in ["duration_model", "duration_model_p90", "closure_model",
-                  "major_model", "reference_tables", "feature_builder"]
+        for m in required_base
     )
 
 

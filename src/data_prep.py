@@ -47,6 +47,10 @@ CSV_NAME = "Astram event data_anonymized - Astram event data_anonymizedb40ac87.c
 
 IST_OFFSET = pd.Timedelta(hours=5, minutes=30)  # file timestamps are UTC
 
+# Bengaluru city centre (Majestic / KSR station) — used for dist_to_center.
+CENTER_LAT, CENTER_LON = 12.9716, 77.5946
+DEG_TO_KM = 111.0  # rough degrees-to-km at this latitude
+
 LAT_MIN, LAT_MAX = 12.6, 13.3
 LON_MIN, LON_MAX = 77.3, 77.9
 
@@ -75,8 +79,11 @@ KEYWORD_FLAGS = [
 BASE_NUMERIC = [
     "latitude", "longitude", "hour", "dow", "month", "is_weekend", "is_peak",
     "is_holiday", "days_to_holiday",
-    "corridor_density", "junction_density", "cluster_density",
-    "hour_sin", "hour_cos", "peak_corridor", "weekend_peak",
+    "corridor_density", "junction_density", "cluster_density", "zone_density",
+    "hour_sin", "hour_cos", "dow_sin", "dow_cos", "month_sin", "month_cos",
+    "peak_corridor", "weekend_peak",
+    "dist_to_center",
+    "desc_length", "desc_word_count", "kw_total",
 ]
 CLOSURE_FLAG = "requires_road_closure"
 TEXT_COL = "description_text"
@@ -164,6 +171,10 @@ def _add_time_features(df: pd.DataFrame, dt_col: str = "start_datetime") -> pd.D
         
     df["hour_sin"] = np.sin(2 * np.pi * df["hour"] / 24.0)
     df["hour_cos"] = np.cos(2 * np.pi * df["hour"] / 24.0)
+    df["dow_sin"] = np.sin(2 * np.pi * df["dow"] / 7.0)
+    df["dow_cos"] = np.cos(2 * np.pi * df["dow"] / 7.0)
+    df["month_sin"] = np.sin(2 * np.pi * df["month"] / 12.0)
+    df["month_cos"] = np.cos(2 * np.pi * df["month"] / 12.0)
     return df
 
 
@@ -189,10 +200,13 @@ def _add_text_features(df: pd.DataFrame) -> pd.DataFrame:
         text = pd.Series([""] * len(df), index=df.index)
     text = text.fillna("").astype(str)
     df["description_text"] = text
+    df["desc_length"] = text.str.len().fillna(0).astype(int)
+    df["desc_word_count"] = text.str.split().str.len().fillna(0).astype(int)
     low = text.str.lower()
     for flag, subs in _KEYWORD_PATTERNS.items():
         pat = "|".join(re.escape(s) for s in subs)
         df[flag] = low.str.contains(pat, regex=True, na=False).astype(int)
+    df["kw_total"] = df[KEYWORD_FLAGS].sum(axis=1)
     return df
 
 
@@ -265,6 +279,12 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
     df = _add_time_features(df)
     df = _add_holiday_features(df)
     df = _add_text_features(df)
+
+    # Spatial: distance from Bengaluru city centre (approx km)
+    df["dist_to_center"] = np.sqrt(
+        (df["latitude"] - CENTER_LAT) ** 2
+        + (df["longitude"] - CENTER_LON) ** 2
+    ) * DEG_TO_KM
     
     # Interaction features
     df["peak_corridor"] = df["is_peak"] * df["is_corridor"].astype(int)
@@ -282,6 +302,7 @@ class FeatureBuilder:
         self.cluster_counts: dict = {}
         self.corridor_counts: dict = {}
         self.junction_counts: dict = {}
+        self.zone_counts: dict = {}
 
     def fit(self, df: pd.DataFrame) -> "FeatureBuilder":
         coords = df[["latitude", "longitude"]].to_numpy()
@@ -291,6 +312,7 @@ class FeatureBuilder:
         self.cluster_counts = pd.Series(clusters).value_counts().to_dict()
         self.corridor_counts = df["corridor"].value_counts().to_dict()
         self.junction_counts = df["junction"].value_counts().to_dict()
+        self.zone_counts = df["zone"].value_counts().to_dict()
         return self
 
     def transform(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -301,6 +323,7 @@ class FeatureBuilder:
         df["cluster_density"] = [self.cluster_counts.get(c, 0) for c in cl]
         df["corridor_density"] = df["corridor"].map(self.corridor_counts).fillna(0)
         df["junction_density"] = df["junction"].map(self.junction_counts).fillna(0)
+        df["zone_density"] = df["zone"].map(self.zone_counts).fillna(0)
         return df
 
 

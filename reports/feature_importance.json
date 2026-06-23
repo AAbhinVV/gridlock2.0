@@ -2,187 +2,187 @@
   "duration": [
     {
       "feature": "description_text",
-      "importance": 0.20034
+      "importance": 0.24454
     },
     {
       "feature": "long_lived_cause",
-      "importance": 0.1166
+      "importance": 0.10419
     },
     {
       "feature": "event_cause",
-      "importance": 0.08185
-    },
-    {
-      "feature": "veh_type",
-      "importance": 0.02756
-    },
-    {
-      "feature": "police_station",
-      "importance": 0.02111
-    },
-    {
-      "feature": "latitude",
-      "importance": 0.01819
-    },
-    {
-      "feature": "hour_sin",
-      "importance": 0.01632
-    },
-    {
-      "feature": "longitude",
-      "importance": 0.0138
-    },
-    {
-      "feature": "days_to_holiday",
-      "importance": 0.01108
+      "importance": 0.10362
     },
     {
       "feature": "junction",
-      "importance": 0.0107
+      "importance": 0.09862
     },
     {
-      "feature": "cluster_density",
-      "importance": 0.01017
+      "feature": "police_station",
+      "importance": 0.06476
     },
     {
-      "feature": "month",
-      "importance": 0.00969
+      "feature": "veh_type",
+      "importance": 0.02751
     },
     {
-      "feature": "hour_cos",
-      "importance": 0.00958
+      "feature": "dist_to_center",
+      "importance": 0.02591
+    },
+    {
+      "feature": "hour_sin",
+      "importance": 0.02523
+    },
+    {
+      "feature": "latitude",
+      "importance": 0.02472
+    },
+    {
+      "feature": "longitude",
+      "importance": 0.02149
+    },
+    {
+      "feature": "days_to_holiday",
+      "importance": 0.01657
+    },
+    {
+      "feature": "desc_length",
+      "importance": 0.01433
     },
     {
       "feature": "cluster_id",
-      "importance": 0.00889
+      "importance": 0.01285
     },
     {
-      "feature": "hour",
-      "importance": 0.00872
+      "feature": "month",
+      "importance": 0.01187
+    },
+    {
+      "feature": "corridor_density",
+      "importance": 0.01097
     }
   ],
   "closure": [
     {
       "feature": "description_text",
-      "importance": 0.17343
+      "importance": 0.09912
     },
     {
-      "feature": "latitude",
-      "importance": 0.01157
-    },
-    {
-      "feature": "longitude",
-      "importance": 0.00879
+      "feature": "junction",
+      "importance": 0.03974
     },
     {
       "feature": "event_cause",
-      "importance": 0.00464
-    },
-    {
-      "feature": "days_to_holiday",
-      "importance": 0.00461
-    },
-    {
-      "feature": "corridor_density",
-      "importance": 0.00339
+      "importance": 0.01352
     },
     {
       "feature": "police_station",
-      "importance": 0.00322
+      "importance": 0.00703
+    },
+    {
+      "feature": "desc_length",
+      "importance": 0.00623
     },
     {
       "feature": "cluster_id",
-      "importance": 0.00314
+      "importance": 0.00542
     },
     {
-      "feature": "cluster_density",
-      "importance": 0.00248
+      "feature": "longitude",
+      "importance": 0.00511
     },
     {
-      "feature": "veh_type",
-      "importance": 0.00216
+      "feature": "dist_to_center",
+      "importance": 0.00457
+    },
+    {
+      "feature": "latitude",
+      "importance": 0.00452
+    },
+    {
+      "feature": "days_to_holiday",
+      "importance": 0.00446
+    },
+    {
+      "feature": "event_type",
+      "importance": 0.00419
+    },
+    {
+      "feature": "month",
+      "importance": 0.00356
     },
     {
       "feature": "hour",
-      "importance": 0.00208
+      "importance": 0.00325
     },
     {
       "feature": "junction_density",
-      "importance": 0.00188
+      "importance": 0.0031
     },
     {
       "feature": "corridor",
-      "importance": 0.0018
-    },
-    {
-      "feature": "hour_sin",
-      "importance": 0.00162
-    },
-    {
-      "feature": "dow",
-      "importance": 0.00155
+      "importance": 0.00297
     }
   ],
   "major": [
     {
+      "feature": "event_cause",
+      "importance": 0.0441
+    },
+    {
       "feature": "description_text",
-      "importance": 0.08723
+      "importance": 0.03747
     },
     {
       "feature": "veh_type",
-      "importance": 0.01799
-    },
-    {
-      "feature": "longitude",
-      "importance": 0.00357
-    },
-    {
-      "feature": "corridor_density",
-      "importance": 0.00249
-    },
-    {
-      "feature": "days_to_holiday",
-      "importance": 0.00173
-    },
-    {
-      "feature": "latitude",
-      "importance": 0.00168
+      "importance": 0.01454
     },
     {
       "feature": "long_lived_cause",
-      "importance": 0.00152
+      "importance": 0.01271
     },
     {
-      "feature": "hour_sin",
-      "importance": 0.00094
+      "feature": "junction",
+      "importance": 0.00955
     },
     {
-      "feature": "event_cause",
-      "importance": 0.00081
+      "feature": "corridor_density",
+      "importance": 0.00509
     },
     {
-      "feature": "cluster_density",
-      "importance": 0.00062
-    },
-    {
-      "feature": "hour_cos",
-      "importance": 0.00056
-    },
-    {
-      "feature": "month",
-      "importance": 0.0005
-    },
-    {
-      "feature": "dow",
-      "importance": 0.00047
+      "feature": "longitude",
+      "importance": 0.0047
     },
     {
       "feature": "police_station",
-      "importance": 0.00044
+      "importance": 0.00465
     },
     {
-      "feature": "zone",
-      "importance": 0.00042
+      "feature": "dist_to_center",
+      "importance": 0.00458
+    },
+    {
+      "feature": "days_to_holiday",
+      "importance": 0.00326
+    },
+    {
+      "feature": "desc_length",
+      "importance": 0.00295
+    },
+    {
+      "feature": "hour_sin",
+      "importance": 0.00286
+    },
+    {
+      "feature": "cluster_id",
+      "importance": 0.00276
+    },
+    {
+      "feature": "latitude",
+      "importance": 0.00255
+    },
+    {
+      "feature": "hour",
+      "importance": 0.00247
     }
   ]
 }
