@@ -39,6 +39,23 @@ stays **explainable to traffic-control decision makers** while its inputs are
 **learned from history** — directly enabling the "post-event learning system"
 the brief asks for (retrain on new events → priors update).
 
+### 🚨 Live Operations (the full loop, end to end)
+
+The dashboard's first tab runs the whole pipeline in (simulated) real time:
+
+1. **Track** — a live feed of traffic events plays against a clock
+   (`src/live_feed.py` replays the historical stream; swap it for a real
+   API/CAD feed in production).
+2. **Detect** — active events are aggregated into a per-corridor congestion
+   index with Light/Moderate/Heavy/Severe status (`src/congestion.py`).
+3. **Forecast** — every newly detected event is scored by the ML models
+   (duration P50/P90, closure probability, major-event probability).
+4. **Dispatch** — a complete action order (manpower, barricades, diversion
+   plan) is routed to the **nearest police station** by haversine distance
+   over a 54-station directory learned from the data itself
+   (`src/dispatch.py`), with a live map, alert cards and an exportable
+   dispatch log.
+
 ---
 
 ## Quick start
@@ -61,9 +78,16 @@ python predict.py --type planned --cause public_event \
 #     and write every test event's forecast + recommendation to predictions.csv
 python make_predictions.py
 
-# 3c. …or launch the interactive dashboard
+# 3c. …or launch the interactive dashboard (opens on the Live Operations tab)
 streamlit run app.py
+
+# Smoke-test the live pipeline from the CLI
+python -m src.live_feed   # feed simulator + busiest replay days
+python -m src.dispatch    # station directory + sample dispatch orders
 ```
+
+> Note: the committed `models/` were pickled under **NumPy 2.x** — use
+> `numpy>=2.0` (as pinned in `requirements.txt`) or retrain locally.
 
 ### `predictions.csv`
 `make_predictions.py` performs an honest held-out evaluation (the feature
@@ -130,13 +154,27 @@ via transparent, tunable rules. It is **risk-aware** — a wide P50→P90 durati
 band adds a manpower surge — and uses the model's **tuned closure threshold**.
 Every recommendation lists the **key drivers** behind it.
 
-### 4. Interfaces
+### 4. Live pipeline (`src/live_feed.py`, `src/congestion.py`, `src/dispatch.py`)
+- **Feed simulator** replays the historical event stream against a simulated
+  clock (`new_events` / `active_events` per tick) — the swap point for a real
+  feed.
+- **Congestion detector** turns the active-event set into a per-corridor
+  index (closure/peak/arterial weighted) and traffic status, instantly on
+  every tick.
+- **Dispatch engine** builds a police-station directory from the data (median
+  location of each station's 8k+ historical events), finds the nearest
+  station by haversine distance, and issues a `DispatchOrder` combining the
+  ML forecast with the sized action plan. A batch scorer (`forecast_events`)
+  keeps each tick to a single model call.
+
+### 5. Interfaces
 - **`predict.py`** — CLI for a single event (human-readable or `--json`),
   including a P50–P90 duration interval and optional `--desc` free text.
-- **`app.py`** — Streamlit "Command Center" with a *Forecast & Deploy* tab and
-  a *Historical Insight* tab (duration/closure by cause, hourly pattern,
-  busiest corridors, an event hot-spot map, and **permutation-importance**
-  charts explaining each model).
+- **`app.py`** — Streamlit "Command Center" with a *Live Operations* tab
+  (simulated real-time detect → forecast → dispatch, live map, dispatch log),
+  a *Forecast & Deploy* tab and a *Historical Insight* tab (duration/closure
+  by cause, hourly pattern, busiest corridors, an event hot-spot map, and
+  **permutation-importance** charts explaining each model).
 
 ---
 
@@ -162,7 +200,7 @@ signals actually available *before* an event is resolved.
 
 ```
 .
-├── app.py                    # Streamlit command-center dashboard
+├── app.py                    # Streamlit command-center dashboard (3 tabs)
 ├── predict.py                # CLI single-event forecaster
 ├── make_predictions.py       # held-out test -> predictions.csv
 ├── predictions.csv           # generated test-set predictions + recommendations
@@ -172,7 +210,10 @@ signals actually available *before* an event is resolved.
 │   ├── data_prep.py          # cleaning, feature engineering, FeatureBuilder (shared)
 │   ├── train.py              # tunes/calibrates/validates + trains all models
 │   ├── recommend.py          # impact score → manpower/barricade/diversion plan
-│   └── inference.py          # loads models + builder, EventInput → recommendation
+│   ├── inference.py          # loads models + builder, EventInput → recommendation
+│   ├── live_feed.py          # simulated real-time event feed (replay of history)
+│   ├── congestion.py         # per-corridor congestion index + traffic status
+│   └── dispatch.py           # nearest-police-station routing + dispatch orders
 ├── models/                   # saved .joblib models + feature_builder + reference tables
 └── reports/
     ├── metrics.json          # CV/temporal/group metrics + before/after + best params
