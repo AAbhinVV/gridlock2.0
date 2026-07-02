@@ -162,6 +162,40 @@ def build_dispatch_order(row: pd.Series, forecast: dict,
     )
 
 
+def forecast_events(forecaster, rows: pd.DataFrame) -> list[dict]:
+    """Batch-forecast already-engineered live-feed rows (one model call for the
+    whole tick instead of one per event). Equivalent to
+    Forecaster.predict(event_input_from_row(row)) for each row."""
+    from src.data_prep import build_feature_frame
+    from src.recommend import recommend
+
+    if rows.empty:
+        return []
+    X = build_feature_frame(forecaster.builder.transform(rows))
+    cap = 60.0 * 24 * 3
+    p50 = np.clip(np.expm1(forecaster.duration_model.predict(X)), 1.0, cap)
+    p90 = np.maximum(
+        np.clip(np.expm1(forecaster.duration_model_p90.predict(X)), 1.0, cap), p50
+    )
+    closure_p = forecaster.closure_model.predict_proba(X)[:, 1]
+    major_p = forecaster.major_model.predict_proba(X)[:, 1]
+    threshold = float(forecaster.thresholds.get("closure", 0.5))
+
+    out = []
+    for i, (_, row) in enumerate(rows.iterrows()):
+        rec = recommend(
+            duration_min=float(p50[i]),
+            closure_prob=float(closure_p[i]),
+            major_prob=float(major_p[i]),
+            corridor=row["corridor"],
+            is_peak=int(row["is_peak"]),
+            duration_p90=float(p90[i]),
+            closure_threshold=threshold,
+        )
+        out.append(rec.as_dict())
+    return out
+
+
 # ---------------------------------------------------------------------- smoke
 if __name__ == "__main__":
     from src.data_prep import engineer_features, load_raw
